@@ -1,7 +1,7 @@
 /*
  ============================================================================
  Name        : LM35.c
- Author      : Yavuz Murat TAÞ
+ Author      : Yavuz Murat TAÃž
  Description : Measruing Temperature with LM35 Sensor
  ============================================================================
  */
@@ -32,7 +32,7 @@ int gpio_read_value( void )
 
     int fd;
     char value[5];
-    value[4] = 0;
+    value[5] = 0;
     char buf[SOME_BYTES];
 
     snprintf(buf, sizeof(buf), SYS_AINO_PATH );	// SYS_AINO_PATH is written into buf according to the length of buf
