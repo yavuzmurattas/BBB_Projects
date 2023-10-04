@@ -1,0 +1,55 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	model = "TI AM335x BeagleBone Black";
+	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+	
+	fragment@0 {
+		target-path="/";
+		__overlay__ {
+
+			my_sysfs: my_sysfs {
+				compatible = "ymt, sysfs";
+				pinctrl-single,names = "default";
+		 		pinctrl-0 = <&p8_gpios>;
+				
+				gpio1: gpio_1{
+					status = "okay";
+					my_value = <180>;
+					label = "gpio2_10";
+					bone-gpios = <&gpio2 10 GPIO_ACTIVE_HIGH>;
+				};
+				
+				gpio2: gpio_2{
+					status = "okay";
+					my_value = <90>;
+					label = "gpio2_11";
+					bone-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+				};
+			};
+		};
+	};
+	
+	fragment@1 {
+                target = <&tda19988>;
+                __overlay__ {
+                        status = "disabled";
+                };
+        };
+        
+        fragment@2 {
+                target = <&am33xx_pinmux>;
+                __overlay__ {
+			p8_gpios: bone_p8_gpios {
+				pinctrl-single,pins = < 
+						AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE7) 
+						AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_INPUT, MUX_MODE7) 
+				>;
+
+			};
+                };
+        };
+
+        
+};

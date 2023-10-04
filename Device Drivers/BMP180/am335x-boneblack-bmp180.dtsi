@@ -1,0 +1,17 @@
+&i2c2{ //& is added the below node to the relevant node (i2c2 in this case) as a child node
+
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	bmp180: bmp180@77{
+		compatible = "ymt, bmp180";
+		status = "okay";
+		default-oversampling = <0>;
+		reg = <0x77>;
+		chip-id = <10>;
+		temp-measurement-period = <100>;
+		reset-gpios = <&gpio0 26 GPIO_ACTIVE_LOW>;
+		label = "bmp180_driver";
+		my_value = <180>;
+	}; 
+};

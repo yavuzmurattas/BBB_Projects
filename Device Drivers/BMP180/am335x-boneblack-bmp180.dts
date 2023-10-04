@@ -1,0 +1,26 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	model = "TI AM335x BeagleBone Black";
+	compatible = "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
+	
+	fragment@0 {
+		target = <&i2c2>;
+		__overlay__ {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			bmp180: bmp180@77 {
+				compatible = "ymt, bmp180";
+				status = "okay";
+				default-oversampling = <0>;
+				reg = <0x77>;
+				chip-id = <0x55>;
+				temp-measurement-period = <100>;
+				label = "bmp180_driver";
+				my_value = <180>;
+			};
+		};
+	};
+};

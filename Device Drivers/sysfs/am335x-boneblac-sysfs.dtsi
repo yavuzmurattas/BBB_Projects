@@ -1,0 +1,38 @@
+/ {
+	my_sysfs: my_sysfs {
+		compatible = "ymt, sysfs";
+		pinctrl-single,names = "default";
+		pinctrl-0 = <&p8_gpios>;
+			
+			gpio1: gpio_1{
+				status = "okay";
+				my_value = <180>;
+				label = "gpio2_12";
+				bone-gpios = <&gpio2 12 GPIO_ACTIVE_HIGH>;
+			};
+			
+			gpio2: gpio_2{
+				status = "okay";
+				my_value = <90>;
+				label = "gpio2_11";
+				bone-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
+			};
+	};
+       
+}; //root node
+
+
+&tda19988 {
+	status = "disabled";
+};
+
+&am33xx_pinmux {
+	p8_gpios: bone_p8_gpios {
+		pinctrl-single,pins = < 
+					AM33XX_PADCONF(AM335X_PIN_LCD_DATA5, PIN_OUTPUT, MUX_MODE7) 
+					AM33XX_PADCONF(AM335X_PIN_LCD_DATA6, PIN_OUTPUT, MUX_MODE7) 
+		>;
+
+	};
+
+};
